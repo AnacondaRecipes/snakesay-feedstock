@@ -1,7 +1,7 @@
 About snakesay-feedstock
 =======================
 
-Feedstock license: [MIT](LICENSE)
+Feedstock license: BSD 3-Clause
 
 Home: https://github.com/pythonanywhere/snakesay
 
