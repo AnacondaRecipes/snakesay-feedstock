@@ -1,13 +1,13 @@
-About <pkg_name>-feedstock
+About snakesay-feedstock
 =======================
 
-Feedstock license: [BSD-3-Clause](LICENSE)
+Feedstock license: [MIT](LICENSE)
 
-Home: <home_url>
+Home: https://github.com/pythonanywhere/snakesay
 
-Package license: <pkg_license>
+Package license: MIT
 
-Summary: <pkg_summary>
+Summary: speaking snake
 
 
 Current release info
@@ -15,19 +15,19 @@ Current release info
 
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-<pkg_name>-green.svg)](https://anaconda.org/anaconda/<pkg_name>) | [![Conda Downloads](https://img.shields.io/conda/dn/anaconda/<pkg_name>.svg)](https://anaconda.org/anaconda/<pkg_name>) | [![Conda Version](https://img.shields.io/conda/vn/anaconda/<pkg_name>.svg)](https://anaconda.org/anaconda/<pkg_name>) | [![Conda Platforms](https://img.shields.io/conda/pn/anaconda/<pkg_name>.svg)](https://anaconda.org/anaconda/<pkg_name>) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-snakesay-green.svg)](https://anaconda.org/anaconda/snakesay) | [![Conda Downloads](https://img.shields.io/conda/dn/anaconda/snakesay.svg)](https://anaconda.org/anaconda/snakesay) | [![Conda Version](https://img.shields.io/conda/vn/anaconda/snakesay.svg)](https://anaconda.org/anaconda/snakesay) | [![Conda Platforms](https://img.shields.io/conda/pn/anaconda/snakesay.svg)](https://anaconda.org/anaconda/snakesay) |
 
-Installing <pkg_name>
+Installing snakesay
 ==================
 
-Installing `<pkg_name>` from the main channel can be achieved by:
+Installing `snakesay` from the main channel can be achieved by:
 
 ```
-conda install <pkg_name>
+conda install snakesay
 ```
 
-It is possible to list all of the versions of `<pkg_name>` available on your platform with `conda`:
+It is possible to list all of the versions of `snakesay` available on your platform with `conda`:
 
 ```
-conda search <pkg_name>
+conda search snakesay
 ```

@@ -1,45 +1,54 @@
-{% set name = "<PLEASE ADD PKG NAME>" %}
-{% set version = "<PLEASE ADD PKG VERSION>" %}
+{% set name = "snakesay" %}
+{% set version = "0.10.3" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: <sha256>
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/snakesay-{{ version }}.tar.gz
+  sha256: 6346aa7231b1970efc6fa8b3ea78bd015b3d5a7e33ba709c17e00bcc3328f93f
 
 build:
   number: 0
-  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  skip: True  # [py<38]
+  skip: True  # [py<37]
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
+  entry_points:
+    - snakesay = snakesay.snakesay:main
 
 requirements:
   host:
     - python
+    - setuptools >=61.0
+    - wheel
     - pip
   run:
     - python
 
 test:
-  imports:
-    - {{ name.replace('-', '.') }}
+  source_files:
+    - tests
   requires:
     - pip
+    - pytest
+  imports:
+    - snakesay
+    - snakesay.snakesay
   commands:
     - pip check
+    - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
+    - snakesay --help
+    - python -m pytest tests -v --tb=short --color=yes
 
 about:
-  home: <PLEASE ADD HOME URL>
-  summary: <PLEASE ADD SUMMARY>
+  home: https://github.com/pythonanywhere/snakesay
+  dev_url: https://github.com/pythonanywhere/snakesay/tree/v0.10.3
+  doc_url: https://github.com/pythonanywhere/snakesay/blob/master/README.md
+  license: MIT
+  license_file: LICENSE
+  license_family: MIT
+  summary: speaking snake
   description: |
-    <PLEASE ADD DESCRIPTION>
-  license: <PLEASE ADD LICENSE>
-  license_family: <PLEASE ADD LICENSE_FAMILY>
-  license_file: <PLEASE_ADD_LICENSE_FILE>
-  dev_url: <PLEASE ADD DEV URL>
-  doc_url: <PLEASE ADD DOC URL>
+    Python tool similar to cowsay that displays messages spoken by 
+    an ASCII art snake — primarily for fun CLI output
 
-extra:
-  recipe-maintainers:
-    - Jrice1317
