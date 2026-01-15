@@ -1,33 +1,35 @@
 {% set name = "snakesay" %}
-{% set version = "0.10.3" %}
+{% set version = "0.10.4" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/snakesay-{{ version }}.tar.gz
-  sha256: 6346aa7231b1970efc6fa8b3ea78bd015b3d5a7e33ba709c17e00bcc3328f93f
+  - url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+    sha256: d5765fbab9c7dd73cd20472614ba8eeb5066a743a88ff7cd9ae1d8d00aef326f
+  - url: https://github.com/pythonanywhere/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
+    sha256: 8fba3a2b532f9bfbe0f237ec4d4e293bb52d7df9ce0e35792b0c9d842ed74289
+    folder: gh_src
 
 build:
   number: 0
-  skip: True  # [py<37]
+  skip: True  # [py<310]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
   entry_points:
     - snakesay = snakesay.snakesay:main
 
 requirements:
   host:
-    - python
-    - setuptools >=61.0
-    - wheel
     - pip
+    - python
+    - uv-build >=0.8.14,<0.9.0
   run:
     - python
 
 test:
   source_files:
-    - tests
+    - gh_src/tests
   requires:
     - pip
     - pytest
@@ -38,17 +40,17 @@ test:
     - pip check
     - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
     - snakesay --help
-    - python -m pytest tests -v --tb=short --color=yes
+    - pytest -v gh_src/tests
 
 about:
   home: https://github.com/pythonanywhere/snakesay
-  dev_url: https://github.com/pythonanywhere/snakesay/tree/v0.10.3
-  doc_url: https://github.com/pythonanywhere/snakesay/blob/master/README.md
   license: MIT
-  license_file: LICENSE
   license_family: MIT
+  license_file: LICENSE
   summary: speaking snake
   description: |
     Python tool similar to cowsay that displays messages spoken by 
     an ASCII art snake — primarily for fun CLI output
+  dev_url: https://github.com/pythonanywhere/snakesay
+  doc_url: https://github.com/pythonanywhere/snakesay/blob/master/README.md
 
