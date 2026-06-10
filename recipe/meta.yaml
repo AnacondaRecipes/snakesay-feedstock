@@ -2,7 +2,7 @@
 {% set version = "0.10.4" %}
 
 package:
-  name: {{ name|lower }}
+  name: {{ name }}
   version: {{ version }}
 
 source:
@@ -13,11 +13,11 @@ source:
     folder: gh_src
 
 build:
-  number: 0
-  skip: True  # [py<310]
+  number: 1
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
   entry_points:
     - snakesay = snakesay.snakesay:main
+  skip: true  # [py<310]
 
 requirements:
   host:
